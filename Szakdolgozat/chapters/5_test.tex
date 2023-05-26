@@ -28,7 +28,7 @@ Az optimalizálás ezen esetben \textbf{sikeres}, kevesebb számítást veszünk
 
 \newpage
 \Section{Távolság szűrése háromszögekkel}
-Lényege, hogy ütközésvizsgálat előtt a modellek háromszögeinek a középpontját kiszámítjuk, majd a középpontokat viszonyítjuk egymáshoz, ahogy a \ref{fig:opt_2} ábrán láthatjuk. Ha a háromszögek közötti távolság nagyobb, mint a maximum táv, akkor az adott háromszög számítása elhanyagolható.
+Lényege, hogy ütközésvizsgálat előtt a modellek háromszögeinek a középpontját kiszámítjuk, majd a középpontokat viszonyítjuk egymáshoz, ahogy a \ref{fig:opt_2} ábrán láthatjuk. Ha a háromszögek közötti távolság nagyobb, mint a maximum táv, akkor az adott háromszög számítása elhanyagolható, mivel biztosra vehetjük, hogy nem lesz az adott két háromszög esetén metszés.
 
 Az optimalizálás ezen esetben \textbf{sikertelen}, a számítások ideje drasztikusan megnő, használata nem ajánlott.
 
@@ -54,10 +54,3 @@ Az optimalizálás ezen esetben \textbf{megoldható}, a számítások ideje csö
 	\caption{Tengelyek alapján szűrés}
 	\label{fig:opt_3}
 \end{figure}
-
-
-
-\Section{OpenCL}
-A C nyelv OpenCL függvénykönyvtárának használatával a bonyolultabb számításokat a számítógépünk videókártyájával számíthatjuk ki a processzor helyett. Így sokkal gyorsabban tudunk 1-1 nagyobb számítást elvégezni.
-
-Az optimalizálás ezen esetben \textbf{sikertelen}, a számítások ideje csökken, de az átlag FPS a programon belül csökken, mivel túl sok ideig tart 1-1 kernel hívás a számítások elvégzéséhez.
