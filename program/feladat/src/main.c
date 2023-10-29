@@ -23,30 +23,3 @@ int main(int argc, char* argv[])
 
     return 0;
 }
-
-
-
-/*
-TO DO LIST
-
-valami optimalizálás
-dokumentálás
-*/
-
-
-/*
-Keybinding
-
-WASD    -   mozgás
-egér    -   forgás
-görgő   -   kamera távolsága
-E       -   model spawnolása
-Q       -   player hitbox ki/bekapcsolása
-SPACE   -   felfelé repülés
-CTRL    -   lefelé repülés
-ESC     -   kilépés
-N       -   méret növelése
-M       -   méret csökkentése
-IJKLUO  -   forgatás
-CVB     -   tükrözés
-*/

@@ -1,0 +1,24 @@
+\Chapter{Számítási idő}
+A függvénykönyvtár, illetve a demo program futási idejét 2 különböző módon tesztelhetjük. Első esetben csak a háromszögek metszéspontjának számítása lett figyelembe véve, míg a második esetben az \textbf{OpenGL} renderelési ideje is figyelembe lett véve.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=15truecm, height=9truecm]{images/háromszögek_száma.png}
+	\caption{Hárömszögek metszéspontjának számítása}
+	\label{fig:szam_1}
+\end{figure}
+
+Háromszögek metszéspontjainál láthatjuk, hogy a számítási idő lineárisan nő, minél több a háromszög, vele arányosan nő a számítási idő.
+
+\newpage
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=15truecm, height=13truecm]{images/modellek_számítása.png}
+	\caption{Modellek ütközésvizsgálatának számítása}
+	\label{fig:szam_2}
+\end{figure}
+
+Modellek ütközésvizsgálatánál már nem mondhatjuk el, hogy teljesen lineáris lenne a számítási igény. Az elején (kb. 100 modellig) hirtelen nő a számítási idő, majd egyre inkább egyenletes lesz, lineárisan nő a szükséges idő.
+
+\vspace*{\fill}\textit{A számítások intel core i9-13900 processzoron, illetve RTX 4070 videókártyán lettek elvégezve. Az eredmények más rendszereken mások lehetnek. Modellek ütközésének vizsgálatakor mindig 1 kockát (12 háromszög) és több hengert (124 háromszög * modellek száma) vettünk figyelembe.}

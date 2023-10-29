@@ -1,6 +1,7 @@
 #include <SDL2/SDL_image.h>
 #include "app.h"
 
+
 void init_app(App *app, int width, int height)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)

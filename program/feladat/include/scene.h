@@ -7,7 +7,7 @@
 #include "model.h"
 
 
-#define MAX_MODELS 6
+#define MAX_MODELS 5
 
 /**
  * Camera, as a moving point with direction

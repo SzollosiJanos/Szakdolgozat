@@ -134,16 +134,14 @@ void spawnmodel(Scene *scene, Camera *camera)
     strcpy(models[0], "assets/models/default_map.obj");
     strcpy(models[1], "assets/models/house.obj");
     strcpy(models[2], "assets/models/cylinder.obj");
-    strcpy(models[3], "assets/models/cube.obj");
-    strcpy(models[4], "assets/models/monkey.obj");
-    strcpy(models[5], "assets/models/sphere.obj");
+    strcpy(models[3], "assets/models/monkey.obj");
+    strcpy(models[4], "assets/models/sphere.obj");
 
     strcpy(textures[0], "assets/textures/test.png");
     strcpy(textures[1], "assets/textures/house.png");
     strcpy(textures[2], "assets/textures/test.png");
     strcpy(textures[3], "assets/textures/test.png");
     strcpy(textures[4], "assets/textures/test.png");
-    strcpy(textures[5], "assets/textures/test.png");
     load_new_model(scene, models[scene->model_counter], textures[scene->model_counter]);
     scene->models[scene->model_counter - 1].position.x = camera->offset.x + 11;
     scene->models[scene->model_counter - 1].position.y = camera->offset.y + 11;

@@ -22,6 +22,15 @@ Lépései:
 Előnye a módszernek, hogy a bonyolult modelleket leírhatjuk először egyszerű geomatria alakzattal, így az ütközésvizsgálat ideje nagyban csökken.\\
 Hátránya a módszernek, hogy az algoritmus csak közelíti az eredményt, ezért fontos egyéb algoritmusokat alkalmazni a pontos ütközésvizsgálathoz.
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=13truecm, height=7.5truecm]{images/con1.png}
+	\caption{Doboz rendelése modellekhez 2D-ben ábrázolva}
+	\label{fig:con_1}
+\end{figure}
+
+\newpage
+
 \subsection{Sugárkövetés módszere:}
 A sugárkövetés módszere egy nagyon elterjedt technológia ütközések vizsgálatához. Ezzel a módszerrel valós időben tudjuk kiszámítani a világítást és az árnyékokat.
 Az ötlet lényege, hogy a modellek és a fényforrások közötti interakciókat számítjuk. Egy sugarat bocsátunk ki a képpont irányába a kamera pozíciójából, és ellenőrizzük, hogy a sugár milyen modelleket metsz.
@@ -42,7 +51,14 @@ Lépései:
 Előnye a módszernek, hogy hatékonyan hozhatunk létre fotorealisztikus képeket.\\
 Hátránya a módszernek, hogy a számítási igénye magas.
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=13truecm, height=7.5truecm]{images/con2.png}
+	\caption{Sugárkövetés alap gondolatának ábrázolása}
+	\label{fig:con_2}
+\end{figure}
 
+\newpage
 \subsection{Voxel-alapú:}
 A voxel-alapú módszer egy hatékony módszer, amely a háromdimenziós teret felosztja kisebb részekre. A teret téglalap alakú részekre bontja, ezeket a részeket voxel-nek nevezzük.
 Ezekkel a voxelekkel közelítjük a modelleket.
@@ -57,7 +73,14 @@ Lépései:
 \end{itemize}
 Előnye a módszernek, hogy a használata egyszerű, a pontosság könnyen módosítható. Nagyobb tér esetén hatékony megoldás lehet. Az ütközésvizsgálat csak az aktív voxelek esetén történik meg, így elkerülhető a fölösleges számítások.\\
 Hátránya a módszernek, hogy nehéz pontosan meghatározni a voxel rács méretét. Túl nagy méret esetén az ütközésvizsgálat nem lesz elég pontos, kis méret esetén a számítások költségesek lehetnek.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=13truecm, height=7.5truecm]{images/con3.png}
+	\caption{A tér felbontása voxelekre 2 dimenzióban}
+	\label{fig:con_3}
+\end{figure}
 
+\newpage
 \subsection{Egyenletek alkalmazása:}
 Az egyenletek alkalmazásának módszere egy elterjedt technológia. A módszer alapötlete, hogy matematikai egyenletek segítségével határozza meg a modellek mozgásának, illetve ütközéseinek érzékelésére.
 \\
