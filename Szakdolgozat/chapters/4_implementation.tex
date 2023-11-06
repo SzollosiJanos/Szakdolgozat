@@ -1,6 +1,6 @@
 \Chapter{Megvalósítás}
 Háromszöget metszéspontjának számításához több, a \textbf{C} nyelvbe alapértelmezetten be nem épített, szinte már elemi szintű függvényre van szükségünk. \\
-Ilyen például a \textbf{minimum}, illetve \textbf{maximum} kiválasztása 3 \textbf{float}-ból a \textbf{math.h} függvénykönyvtár segítségével:
+Ilyen például a minimum, illetve maximum kiválasztása 3 float-ból a math.h függvénykönyvtár segítségével:
 
 \begin{cpp}
 float getmin(float a, float b, float c)
@@ -13,8 +13,7 @@ float getmax(float a, float b, float c)
     return fmaxf(fmaxf(a, b), c);
 }
 \end{cpp}
-
-Illetve az elemi szintű számítások, például 3 dimenziós vektorok \textbf{kivonása, szorzása Descartes szorzása}:
+Illetve az elemi szintű számítások, például 3 dimenziós vektorok kivonása, szorzása, Descartes szorzása:
 
 \begin{cpp}
 vec3 sub(vec3 A, vec3 B)
@@ -42,7 +41,6 @@ vec3 cross(vec3 A, vec3 B)
     return C;
 }
 \end{cpp}
-
 Illetve a korábban említett eldöntés, hogy a két háromszög metszi-e egymást, vagy sem.
 
 \begin{cpp}
@@ -65,7 +63,7 @@ bool isSeparated(float a1, float a2, float b0, float b1, float b2)
 \newpage
 \Section{Metszéspont számítása}
 
-Az előző szekcióban bemutatott számítások felhasználásával mostmár kiszámíthatjuk, hogy a háromszögek metszik-e egymást, vagy sem. Erre a \textbf{\texttt{check\_collision}} függvényt használjuk.
+Az előző szekcióban bemutatott számítások felhasználásával mostmár kiszámíthatjuk, hogy a háromszögek metszik-e egymást, vagy sem. Erre a check\_collision függvényt használjuk.
 
 \begin{cpp}
 bool check_collision(Model *model1, Model *model2, vec3 model1_position,
@@ -93,17 +91,17 @@ vec3 model2_position)
         k++;
         l = 0;
     }
-return false;
+	return false;
 }
 \end{cpp}
 
 A függvénynek 4 bemenete van. Az első 2 bemenet adja meg, hogy melyik 2 modellt szeretnék leellenőrizni, hogy ütköznek-e. Az utolsó 2 bemenet adja meg a modellek jelenlegi pozícióját.
 Elsőként leellenőrizzük a két modell közötti távolságot. Ha kiesnek egymás távolságából, akkor nem ellenőrizzük le a metszéseket, ezzel optimalizálva valamennyire a programot. 
 
-Amennyiben közel vannak egymáshoz a modellek, akkor egy dupla ciklus segítségével végigmegyünk mindkét modell minden egyes háromszögén és leellenőrizzük, hogy ütköznek-e a \textbf{\texttt{check\_collision\_helper}} függvény segítségével. Ha ütköznek, akkor igaz értékkel visszatérünk, és nem ellenőrzünk tovább.
+Amennyiben közel vannak egymáshoz a modellek, akkor egy dupla ciklus segítségével végigmegyünk mindkét modell minden egyes háromszögén és leellenőrizzük a check\_collision\_helper függvény segítségével, hogy ütköznek-e. Ha ütköznek, akkor igaz értékkel visszatérünk, és nem ellenőrzünk tovább.
 \newpage
 
-Egyszerűbb olvashatóság kedvéért egy \textbf{\texttt{check\_collision\_helper}} segédfüggvényt használunk a metszéspontok számításához.
+Az egyszerűbb olvashatóság kedvéért egy check\_collision\_helper segédfüggvényt használunk a metszéspontok számításához.
 
 \begin{cpp}
 bool check_collision_helper(int k, int l, Model *model1, 
@@ -133,24 +131,18 @@ Model *model2, vec3 model1_position, vec3 model2_position)
     return checkCollisionTriangle(A0, A1, A2, B0, B1, B2);
 }
 \end{cpp}
-
-
-6 bemenete van a függvénynek. Az első bemenet határozza meg, hogy az adott modell hanyadik háromszögét vizsgáljuk. A második bemenet határozza meg, hogy a másik modell hanyadik háromszögét vizsgáljuk. Utána következik a 2 modell, majd a modellek pozíciója.
-
+6 bemenete van a függvénynek. Az első bemenet határozza meg, hogy az adott modell hanyadik háromszögét vizsgáljuk. A második bemenet határozza meg, hogy a másik modell hanyadik háromszögét vizsgáljuk. Utána következik a 2 modell, majd a modellek pozíciója.\\
 Létrehozunk 6 darab 3 dimenziós vektort, amelyek tartalmazzák majd a háromszöget csúcspontjainak koordinátáit a térben. \\
-Kiszámításának módja: \textit{model1->f[k].points[0].vertex\_index} \\
-\textit{model1} az adott modell, amely egy pointerként rámutat az \textit{f} struktúrára, amely tartalmazza az adott háromszög adatait. Az \textit{f k}-adik indexű háromszögét vizsgáljuk mindig, azon belül a \textit{points} struktúrában tárolt adatokra van szükségünk. Ennek a változónak is a \textit{vertex\_index} elemére. Ezzel megkapjuk egy háromszög pontjának az indexét.
-
-Ebből kinyerhetjük a háromszög csúcspontjainak pontos koordinátáit.
-
-\textit{A0.x = model1->v[model1->f[k].points[0].vertex\_index].x 
-	+ model1\_position.x}
-
-Így beállíthatjuk az új háromszögünk első csúcspontjának X koordinátáját, amelyhez hozzá kell adnunk a modell jelenlegi pozícióját. Ezt megismételjük mindig csúcspontra, illetve a másik modellre is, mielőtt meghívjuk a \textbf{checkCollisionTriangle} függvényt.
+Kiszámításának módja: model1->f[k].points[0].vertex\_index \\
+model1 az adott modell, amely egy pointerként rámutat az f struktúrára, amely tartalmazza az adott háromszög adatait. Az f k-adik indexű háromszögét vizsgáljuk mindig, azon belül a points struktúrában tárolt adatokra van szükségünk. Ennek a változónak is a vertex\_index elemére. Ezzel megkapjuk egy háromszög pontjának az indexét.\\
+Ebből kinyerhetjük a háromszög csúcspontjainak pontos koordinátáit.\\
+A0.x = model1->v[model1->f[k].points[0].vertex\_index].x 
+	+ model1\_position.x\\
+Így beállíthatjuk az új háromszögünk első csúcspontjának X koordinátáját, amelyhez hozzá kell adnunk a modell jelenlegi pozícióját. Ezt megismételjük mindig csúcspontra, illetve a másik modellre is, mielőtt meghívjuk a checkCollisionTriangle függvényt.
 
 \newpage
 
-A \textbf{checkCollisionTriangle} függvény megkapja az előző függvény által kiszámolt 6 csúcspontot. Ezen csúcspontok segítségével számolja ki a fentebb említett számolási módszer segítségével az éleket, a normál vektorokat és a távolságot, majd leellenőrzi, hogy a háromszöget metszik-e egymást, vagy sem.
+A checkCollisionTriangle függvény megkapja az előző függvény által kiszámolt 6 csúcspontot. Ezen csúcspontok segítségével számolja ki a fentebb említett számolási módszer segítségével az éleket, a normál vektorokat és a távolságot, majd leellenőrzi, hogy a háromszögek metszik-e egymást, vagy sem.
 
 \begin{cpp}
 bool checkCollisionTriangle(vec3 A0, vec3 A1, vec3 A2, vec3 B0,
@@ -165,7 +157,7 @@ vec3 B1, vec3 B2)
     vec3 E2 = sub(E1, E0);
     vec3 F = cross(E0, E1);
     vec3 G = sub(B0, A0);
-}
+    ...
 \end{cpp}
 
 A metszések kiszámítása kódban terjedelmes, ezért csak 1 példa lesz bemutatva.
@@ -183,15 +175,15 @@ if (isSeparated(0, 0, i0, i1, i2))
 }
 \end{cpp}
 
-Itt a \textit{D} normálvektor alapján próbáljuk eldönteni, hogy különállnak-e a háromszögek, vagy sem. A táblázat alapján kiszámítjuk a \textit{$H_1, H_2, I_0, I_1, I_2$} változókat, majd az alapján meghívjuk az \textit{isSeparated} függvényt, amely eldönti, hogy a háromszögek különállnak-e, vagy sem. (Az \textit{isSeparated} függvény megtalálható az "Elemi szintű számítások" szekcióban)
+Itt a \textit{D} normálvektor alapján próbáljuk eldönteni, hogy különállnak-e a háromszögek, vagy sem. A \ref{tab:szamitas} táblázat alapján kiszámítjuk a $H_1, H_2, I_0, I_1, I_2$ változókat, majd az alapján meghívjuk az isSeparated függvényt, amely eldönti, hogy a háromszögek különállnak-e, vagy sem. A könnyebb átláthatóság érdekében a függvények kapcsolatát a \ref{fig:blokkdiagram} ábra mutatja.
 \newpage
 
-\Section{Modell formázása}
+\Section{Modell mozgatása a térben}
 
-Az eddig bemutatott kódok alapján a program így csak az alapértelmezett modelleket képes kezelni, ami nem kedvező számunkra. Ezért új függvények lettek létrehozva a modellek méretezéséhez, forgatásához, tükrözéséhez. Ha azt szeretnénk, hogy a modell "hitboxa" mozogjon a modellel együtt, akkor ezeket a függvényeket kell használnunk az \textbf{OpenGL}-ben alapértelmezett függvények helyett. Ezek a függvények magát a modellt módosítják, nem pedig a megjelenítését.
+Az eddig bemutatott kódok alapján a program így csak az alapértelmezett modelleket képes kezelni, ami nem kedvező számunkra. Ezért új függvények lettek létrehozva a modellek méretezéséhez, forgatásához, tükrözéséhez. Ha azt szeretnénk, hogy a modell "hitboxa"\textsuperscript{\ref{def:hitbox}} mozogjon a modellel együtt, akkor ezeket a függvényeket kell használnunk az \cite{OpenGL}{OpenGL}-ben alapértelmezett függvények helyett. Ezek a függvények magát a modellt módosítják, nem pedig a megjelenítését.
 
 \subsection{Modell méretezése}
-
+A scale\_model függvény 4 bemenettel rendelkezik, az első a modell maga, a maradék 3 pedig a méretezéshez szükséges float változók. A függvény végigmegy minden egyes háromszögén a modellnek, és a háromszög csúcspontjainak a koordinátáit megszorozza a megadott új méretekkel. Modellek méretezéséről példát a \ref{fig:meret_1}, illetve \ref{fig:meret_2} ábrákon láthatunk.
 \begin{cpp}
 void scale_model(Model *model, float scalex, float scaley, 
 float scalez)
@@ -211,13 +203,13 @@ float scalez)
 }
 \end{cpp}
 
-A \textbf{scale\_model} függvény 4 bemenettel rendelkezik, az első a modell maga, a maradék 3 pedig a méretezéshez szükséges float változók. A függvény végigmegy minden egyes háromszögén a modellnek, és a háromszög csúcspontjainak a koordinátáit megszorozza a megadott új méretekkel. Modellek méretezéséről példát a \ref{fig:meret_1}, illetve \ref{fig:meret_2} ábrákon láthatunk.
+
 \newpage
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=13truecm, height=7truecm]{images/modell_4.3.1.1.png}
-	\caption{Alapértelmezett playermodell méret}
+	\caption{Alapértelmezett playermodel\textsuperscript{\ref{def:playermodel}} méret}
 	\label{fig:meret_1}
 \end{figure}
 
@@ -227,7 +219,7 @@ A \textbf{scale\_model} függvény 4 bemenettel rendelkezik, az első a modell m
 \begin{figure}[h]
 		\centering
 		\includegraphics[width=13truecm, height=7truecm]{images/modell_4.3.1.3.png}
-		\caption{Playermodell méretének csökkentése}
+		\caption{Playermodel\textsuperscript{\ref{def:playermodel}} méretének csökkentése}
 		\label{fig:meret_2}
 \end{figure}
 
@@ -237,7 +229,7 @@ A \textbf{scale\_model} függvény 4 bemenettel rendelkezik, az első a modell m
 
 \newpage
 \subsection{Modell forgatása}
-
+A modell forgatása az egyik legnehezebb feladat az összes közül. Itt nem elég szimplán szoroznunk, hanem a forgatás miatt koszinusz, illetve szinusz számításokat is végeznünk kell. A függvény végigmegy minden egyes háromszögén a modellnek, majd a csúcspontok koordinátáit módosítja szinusz és koszinusz számítással az adott forgatási szögek alapján. Modellek forgatásáról példát a \ref{fig:forgatas_1}, illetve \ref{fig:forgatas_2} ábrákon láthatunk.
 \begin{cpp}
 void rotate_model(Model *model, float anglex, float angley, float anglez)
 {
@@ -267,25 +259,35 @@ void rotate_model(Model *model, float anglex, float angley, float anglez)
 }
 \end{cpp}
 
-A modell forgatása az egyik legnehezebb feladat az összes közül. Itt nem elég szimplán szoroznunk, hanem a forgatás miatt koszinusz, illetve szinusz számításokat is végeznünk kell. A függvény végigmegy minden egyes háromszögén a modellnek, majd a csúcspontok koordinátáit módosítja szinusz és koszinusz számítással az adott forgatási szögek alapján. Modellek forgatásáról példát a \ref{fig:forgatas_1}, illetve \ref{fig:forgatas_2} ábrákon láthatunk.
+
 
 \newpage
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=13truecm, height=7truecm]{images/modell_4.3.2.1.png}
-	\caption{Alapértelmezett playermodell forgatás}
+	\caption{Alapértelmezett playermodel\textsuperscript{\ref{def:playermodel}}}
 	\label{fig:forgatas_1}
 \end{figure}
 $$\big\Downarrow$$
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=13truecm, height=7truecm]{images/modell_4.3.2.3.png}
-	\caption{Playermodell forgatása a tengelyeken}
+	\caption{Playermodel\textsuperscript{\ref{def:playermodel}} forgatása a térben}
 	\label{fig:forgatas_2}
 \end{figure}
 
+\newpage
+\Section{Függvények kapcsolata}
 
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=15truecm, height=15truecm]{images/blokk_diagram.png}
+	\caption{Függvénykönyvtár hívási fája}
+	\label{fig:blokkdiagram}
+\end{figure}
 
 
 
