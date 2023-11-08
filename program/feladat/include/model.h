@@ -70,17 +70,6 @@ typedef enum
 
 typedef GLubyte Pixel[3];
 
-
-/**
- * Three dimensional vector
- */
-typedef struct vec3
-{
-	float x;
-	float y;
-	float z;
-} vec3;
-
 /**
  * Color with RGB components
  */

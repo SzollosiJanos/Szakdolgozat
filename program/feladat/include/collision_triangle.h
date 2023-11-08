@@ -7,6 +7,13 @@
 #include <stdbool.h>
 #include "model.h"
 
+typedef struct vec3
+{
+	float x;
+	float y;
+	float z;
+} vec3;
+
 /**
  * Get the lowest number from 3 number
  */

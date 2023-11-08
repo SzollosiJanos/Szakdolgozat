@@ -5,7 +5,6 @@
 #include <math.h>
 #include "scene.h"
 #include "load.h"
-#include "collision_triangle.h"
 
 void init_scene(Scene *scene, Camera *camera)
 {

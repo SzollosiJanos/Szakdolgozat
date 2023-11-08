@@ -5,6 +5,7 @@
 #include <math.h>
 #include <stdbool.h>
 #include "model.h"
+#include "collision_triangle.h"
 
 
 #define MAX_MODELS 5

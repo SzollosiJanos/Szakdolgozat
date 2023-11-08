@@ -39,5 +39,54 @@ $$\textbf{min(H) > max(I) vagy max(H) < min(I)},$$akkor a két háromszögre biz
 	\caption{A számítások táblázata.}
 	\label{tab:szamitas}
 \end{table}
+
 \newpage
 
+\Section{Függvénykönyvtár tervezése}
+A függvénykönyvtár C\cite{C} nyelven íródott. Ez egy egyszerűen megtanulható, gyors programozási nyelv. Létrehozhatunk benne függvényeket, új típusokat/struktúrákat, amelyet később bárhol használhatunk a program készítése során. A készített függvénykönyvtár könnyen használható, mindössze bele kell raknunk az általunk készített program forráskódjai közé a collision\_triangle.c, illetve collision\_triangle.h fájlokat, majd beimportálni azt a forráskódban a '\#include "collision\_triangle.h"' sor segítségével. Ha mindent helyesen csináltunk, akkor máris használhatóak a függvények, illetve struktúrák, amelyeket a \ref{tab:strukt}, illetve \ref{tab:fug} táblázat mutatja be.
+
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{Változó}     & \textbf{Típusa}& \textbf{Leírása}\\ \hline
+		x&float&Egy háromdimenziós pont helyét jelöli az x tengelyen.\\ \hline
+		y&float&Egy háromdimenziós pont helyét jelöli az y tengelyen.\\ \hline
+		z&float&Egy háromdimenziós pont helyét jelöli az z tengelyen.\\ \hline
+		
+	\end{tabular}
+	\caption{Vec3 struktúra bemutatása}
+	\label{tab:strukt}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Függvény} & \textbf{Visszatérése}    & \textbf{Paraméterei}& \textbf{Leírása}\\ \hline
+		
+		check\_collision&Boolean&\parbox{2.7cm}{\centering modell1\\modell2\\modell1 pozíció\\modell2 pozíció}&\parbox{4.3cm}{\centering A modellek és a modellek pozícióinak megadásával visszakapjuk, hogy ütköznek-e vagy sem.}\\ \hline
+		
+		sub&Vec3&\parbox{2.7cm}{\centering 2 térbeli pont\\(A,B)}&\parbox{4.3cm}{\centering Visszaadja a két pont különbségét.}\\ \hline
+		
+		cross&Vec3&\parbox{2.7cm}{\centering 2 térbeli pont\\(A,B)}&\parbox{4.3cm}{\centering Visszaadja a két pont Descartes szorzatát.}\\ \hline
+		
+		dot&Float&\parbox{2.7cm}{\centering 2 térbeli pont\\(A,B)}&\parbox{4.3cm}{\centering Visszaadja a 2 pont koordinátáinak szorzatát\\(A.x * B.x + A.y * B.y + A.z * B.z)}\\ \hline
+		
+		getmin&Float&\parbox{2.7cm}{\centering 3 float változó\\(a,b,c)}&\parbox{4.3cm}{\centering Visszaadja a 3 változó közül a legkisebbet.}\\ \hline
+		
+		getmax&Float&\parbox{2.7cm}{\centering 3 float változó\\(a,b,c)}&\parbox{4.3cm}{\centering Visszaadja a 3 változó közül a legnagyobbat.}\\ \hline
+		
+		get\_distance&Float&\parbox{2.7cm}{\centering 2 térbeli pont\\(A,B)}&\parbox{4.3cm}{\centering Visszaadja a 2 pont közötti távolságot.}\\ \hline	
+			
+		scale\_model&Void&\parbox{2.7cm}{\centering modell\\3 float változó a méretezéshez}&\parbox{4.3cm}{\centering Átméretezi az adott modellt.}\\ \hline	
+			
+		rotate\_modele&Void&\parbox{2.7cm}{\centering modell\\3 float változó a forgatáshoz}&\parbox{4.3cm}{\centering Forgatja a térben a modellt.}\\ \hline		
+		
+		mirror\_model&Void&\parbox{2.7cm}{\centering modell\\tengely indexe\\0=z,1=y,2=x}&\parbox{4.3cm}{\centering Tükrözi a modellt a megadott tengelyre.}\\ \hline
+		
+	\end{tabular}
+	\caption{Függvények bemutatása}
+	\label{tab:fug}
+\end{table}
