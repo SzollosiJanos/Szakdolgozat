@@ -1,6 +1,6 @@
 \Chapter{Bevezetés}
 
-A szakdolgozat célja egy új függvénykönyvtár létrehozása, amely létrehoz automatikusan egy térbeli "hitboxot"\textsuperscript{\ref{def:hitbox}} a beimportált modellekhez, ezzel lehetővé téve a modellek közötti ütközések vizsgálatát. A szakdolgozathoz készített program C\cite{C} nyelven íródott OpenGL\cite{OpenGL} és SDL2\cite{SDL2} függvénykönyvtárak segítségével. A program célja, hogy a modelleket felbontsa atomi szintre (háromszögekre), illetve a háromszögek metszéspontjainak kiszámításával pontos ütközésvizsgálat valósuljon meg \cite{ter}{térpartícionálás} segítségével.
+A szakdolgozat célja egy új függvénykönyvtár létrehozása, amely létrehoz automatikusan egy térbeli "hitboxot"\textsuperscript{\ref{def:hitbox}} a beimportált modellekhez, ezzel lehetővé téve a modellek közötti ütközések vizsgálatát. A szakdolgozathoz készített program C \cite{C} nyelven íródott OpenGL \cite{OpenGL} és SDL2 \cite{SDL2} függvénykönyvtárak segítségével. A program célja, hogy a modelleket felbontsa atomi szintre (háromszögekre), illetve a háromszögek metszéspontjainak kiszámításával pontos ütközésvizsgálat valósuljon meg térpartícionálás \cite{ter} segítségével.
 
 Az ütközésvizsgálat, illetve "hitboxok"\textsuperscript{\ref{def:hitbox}} használata rendkívül fontos a számítógépes grafikában és a játékfejlesztésben. Játékok és fizikai szimulációk fejlesztése során rendkívül fontos, hogy a modellek ütközésvizsgálata megbízható és pontos legyen. A szakdolgozatban szereplő algoritmus a pontosságot célozza meg.
 
@@ -9,6 +9,6 @@ Az atomi szintű ütközésvizsgálat során nagy pontosságot érhetünk el, ez
 A fejezetek végigvezetnek a függvénykönyvtár alapvető működésétől, a részletes implementáción át az optimalizációs lehetőségekig, valamint a függvénykönyvtár használatára is kitérnek. A szakdolgozat eredménye egy olyan függvénykönyvtár, amely hozzájárul a játékfejlesztés, illetve számítógépes grafika lehetőségeinek kibővítéséhez, ezzel segítve a fejlesztőket a kidolgozott hatékony ütközésvizsgálati megoldással.
 \vfill
 \begin{definition}[Hitbox]
-	A "hitbox" a számítógépes programozásban egy objektum területét jelöli, amely fontos az ütközések és interakciók szempontjából. Általában láthatatlan keretként veszi körül az objektumot, és határozza meg, hogy mikor következik be érintkezés más objektumokkal. 
+	A "hitbox" a számítógépes programozásban egy objektum határait jelöli, amely fontos az ütközések és interakciók szempontjából. Általában láthatatlan testként veszi körül az objektumot, és határozza meg, hogy mikor következik be érintkezés más objektumokkal. 
 	\label{def:hitbox}
 \end{definition}

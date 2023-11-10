@@ -1,6 +1,6 @@
 \Chapter{Optimalizálás}
 
-Minél több a "playermodel"\textsuperscript{\ref{def:playermodel}} háromszögeinek száma, illetve a többi modellek száma, és azok háromszögeinek száma, annál több számítást kell végeznünk. Például 2 modell esetén, ha a playermodellünk\textsuperscript{\ref{def:playermodel}} 100 háromszögből áll, és a másik modellünk is szintén 100 háromszögből áll, akkor a programnak frame-enként 100$\cdot$100, azaz $10\,000$ számítást kell végeznie. Emiatt a módszer nem alkalmas valós idejű alkalmazásokhoz. Több módszert is kipróbáltam lehetséges optimalizálás szempontjából.
+Minél több a "playermodel"\textsuperscript{\ref{def:playermodel}} háromszögeinek száma, illetve a többi modellek száma, és azok háromszögeinek száma, annál több számítást kell végeznünk. Például 2 modell esetén, ha a playermodellünk\textsuperscript{\ref{def:playermodel}} 100 háromszögből áll, és a másik modellünk is szintén 100 háromszögből áll, akkor a programnak frame-enként 100$\cdot$100, azaz $10\,000$ számítást kell végeznie, négyzetes idejű az algoritmus számítási ideje. Emiatt a módszer nem alkalmas valós idejű alkalmazásokhoz. Több módszert is kipróbáltam lehetséges optimalizálás szempontjából.
 
 \Section{Szűrés távolság alapján}
 Minden modell betöltésekkor kiszámítjuk a modell középpontjától számított legtávolabbi pontjának hosszát, ahogy a \ref{fig:opt_1} ábrán láthatjuk. Ezt csak egyszer kell kiszámítanunk, kivéve ha futtatás közben szeretnénk módosítani a modellt, például a modell méretének megváltoztatásával. Ütközésvizsgálat előtt kiszámítjuk, hogy a két modell ütközhet-e egymással vagy sem. Ez lényegében a négyzetes elválasztás(\ref{chap:quad}) módszere alapján működik.
@@ -34,6 +34,7 @@ Az optimalizálás ezen esetben \textbf{sikeres}, kevesebb számítást veszünk
 
 \newpage
 \Section{Távolság szűrése háromszögekkel}
+\label{opt_tav}
 Lényege, hogy ütközésvizsgálat előtt a modellek háromszögeinek a középpontját kiszámítjuk, majd a középpontokat viszonyítjuk egymáshoz, ahogy a \ref{fig:opt_2} ábrán láthatjuk. Ha a háromszögek közötti távolság nagyobb, mint a maximum táv, akkor az adott háromszög számítása elhanyagolható, mivel biztosra vehetjük, hogy nem lesz az adott két háromszög esetén metszés.
 
 Az optimalizálás ezen esetben sikertelen, a számítások ideje drasztikusan megnő, használata nem ajánlott.
@@ -41,7 +42,7 @@ Az optimalizálás ezen esetben sikertelen, a számítások ideje drasztikusan m
 \Section{Távolság szűrése háromszögek mentésével}
 Lényege ugyan az, mint az előző szekcióban bemutatott algoritmusnak, annyi kivétellel, hogy a középpontokat csak a modell beolvasásakor számítjuk ki, majd lementjük későbbi használatra, ahogy a \ref{fig:opt_2} ábrán láthatjuk.
 
-Az optimalizálás ezen esetben sikertelen, a számítások ideje megnő az alaphoz képest, de csökken az előző algoritmushoz képest, illetve megnő a memóriaigény is. Használata nem ajánlott.
+Az optimalizálás ezen esetben sikertelen, a számítások ideje megnő az optimalizálatlan programhoz képest, de csökken az \ref{opt_tav} algoritmushoz képest, illetve 25\%-al megnő a memóriaigény is. Használata nem ajánlott.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=13truecm, height=7.5truecm]{images/opt_5.2.png}
@@ -51,7 +52,7 @@ Az optimalizálás ezen esetben sikertelen, a számítások ideje megnő az alap
 
 \newpage
 \Section{Pozíció alapján szűrés}
-Lényege, hogy az adott modell nem feltétlenül van mindig ugyan abban a síkban, mint a másik vizsgálandó modell. Megnézzük a két modell középpontjának koordinátáit, illetve a legtávolabbi pontját az adott tengelyhez képest, ahogy az \ref{fig:opt_3} ábrán láthatjuk. Például, ha a playermodellünk\textsuperscript{\ref{def:playermodel}} a Z koordinátán 20 cm magas, akkor a maximum szint a Z tengelyen az a modell középpontja + 20 cm lesz, minden más háromszöget az adott modellben figyelmen kívül hagyunk. Ezeket a lépéseket meg kell ismételnünk minden tengelyre 2 alkalommal. Ez összesen 6 különböző számítást jelent.
+Lényege, hogy az adott modell nem feltétlenül van mindig ugyan abban a síkban, mint a másik vizsgálandó modell. Megnézzük a két modell középpontjának koordinátáit, illetve a legtávolabbi pontját az adott tengelyhez képest, ahogy az \ref{fig:opt_3} ábrán láthatjuk. Például, ha a playermodellünk a Z koordinátán 20 pixel magas, akkor a maximum szint a Z tengelyen az a modell középpontja + 20 pixel lesz, minden más háromszöget az adott modellben figyelmen kívül hagyunk. Ezeket a lépéseket meg kell ismételnünk minden tengelyre 2 alkalommal. Ez összesen 6 különböző számítást jelent.
 
 Az optimalizálás ezen esetben megoldható, a számítások ideje csökken, de cserébe a memória igény nő.
 \begin{figure}[h]

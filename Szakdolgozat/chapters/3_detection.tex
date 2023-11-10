@@ -43,7 +43,7 @@ $$\textbf{min(H) > max(I) vagy max(H) < min(I)},$$akkor a két háromszögre biz
 \newpage
 
 \Section{Függvénykönyvtár tervezése}
-A függvénykönyvtár C\cite{C} nyelven íródott. Ez egy egyszerűen megtanulható, gyors programozási nyelv. Létrehozhatunk benne függvényeket, új típusokat/struktúrákat, amelyet később bárhol használhatunk a program készítése során. A készített függvénykönyvtár könnyen használható, mindössze bele kell raknunk az általunk készített program forráskódjai közé a collision\_triangle.c, illetve collision\_triangle.h fájlokat, majd beimportálni azt a forráskódban a '\#include "collision\_triangle.h"' sor segítségével. Ha mindent helyesen csináltunk, akkor máris használhatóak a függvények, illetve struktúrák, amelyeket a \ref{tab:strukt}, illetve \ref{tab:fug} táblázat mutatja be.
+A függvénykönyvtár C nyelven \cite{C} íródott C11 szabványban. Ez egy egyszerűen megtanulható, gyors programozási nyelv. Létrehozhatunk benne függvényeket, új típusokat/struktúrákat, amelyet később bárhol használhatunk a program készítése során. A készített függvénykönyvtár könnyen használható, mindössze bele kell raknunk az általunk készített program forráskódjai közé a collision\_triangle.c, illetve collision\_triangle.h fájlokat, majd beimportálni azt a forráskódban a '\#include "collision\_triangle.h"' sor segítségével. Ha mindent helyesen csináltunk, akkor máris használhatóak a függvények, illetve struktúrák, amelyeket a \ref{tab:strukt}, illetve \ref{tab:fug} táblázat mutatja be.
 
 
 \begin{table}[h]
@@ -51,9 +51,9 @@ A függvénykönyvtár C\cite{C} nyelven íródott. Ez egy egyszerűen megtanulh
 	\begin{tabular}{|c|c|c|}
 		\hline
 		\textbf{Változó}     & \textbf{Típusa}& \textbf{Leírása}\\ \hline
-		x&float&Egy háromdimenziós pont helyét jelöli az x tengelyen.\\ \hline
-		y&float&Egy háromdimenziós pont helyét jelöli az y tengelyen.\\ \hline
-		z&float&Egy háromdimenziós pont helyét jelöli az z tengelyen.\\ \hline
+		x&Float&Egy háromdimenziós pont helyét jelöli az x tengelyen.\\ \hline
+		y&Float&Egy háromdimenziós pont helyét jelöli az y tengelyen.\\ \hline
+		z&Float&Egy háromdimenziós pont helyét jelöli az z tengelyen.\\ \hline
 		
 	\end{tabular}
 	\caption{Vec3 struktúra bemutatása}
