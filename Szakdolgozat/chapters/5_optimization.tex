@@ -5,7 +5,7 @@ Minél több a "playermodel"\textsuperscript{\ref{def:playermodel}} háromszöge
 \Section{Szűrés távolság alapján}
 Minden modell betöltésekkor kiszámítjuk a modell középpontjától számított legtávolabbi pontjának hosszát, ahogy a \ref{fig:opt_1} ábrán láthatjuk. Ezt csak egyszer kell kiszámítanunk, kivéve ha futtatás közben szeretnénk módosítani a modellt, például a modell méretének megváltoztatásával. Ütközésvizsgálat előtt kiszámítjuk, hogy a két modell ütközhet-e egymással vagy sem. Ez lényegében a négyzetes elválasztás(\ref{chap:quad}) módszere alapján működik.
 \\
-Részlet a check\_collision függvényből:
+Részlet a \texttt{check\_collision} függvényből:
 \begin{cpp}
 float limit, distance;
 limit = model1->farestpoint + model2->farestpoint + 0.5;
