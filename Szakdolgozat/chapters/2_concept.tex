@@ -9,7 +9,7 @@ A metszéspontok számításhoz legmegfelelőbbnek \href{https://www.geometricto
 \newpage
 \subsection{Négyzetes elválasztás}
 \label{chap:quad}
-A négyzetes elválasztás módszere (Quadratic Separation) egy olyan algoritmus, amelyet számítógépes játékok, illetve számítógépi grafikában közkedvelten használnak ütközések vizsgálatára.
+\href{https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_collision_detection}{A négyzetes elválasztás módszere (Quadratic Separation)} \cite{quad} egy olyan algoritmus, amelyet számítógépes játékok, illetve számítógépi grafikában közkedvelten használnak ütközések vizsgálatára.
 A módszer segítségével meghatározhatjuk, hogy két vagy több modell metszi-e egymást vagy sem.
 Az ötlet lényege, hogy minden modellt egy kocka alakú "dobozokkal" vesszük körbe, amelyet a legkisebb négyszögű terület alapján határozzuk meg. Ekkor az ütközést csak akkor kell ellenőrizni, ha a meghatározott "dobozok" metszik egymást.\\
 Lépései:
@@ -32,7 +32,7 @@ Az előnye a módszernek, hogy a bonyolult modelleket leírhatjuk először egys
 
 \newpage
 \subsection{Voxel-alapú ütközésvizsgálat}
-A voxel-alapú módszer egy hatékony módszer, amely a (háromdimenziós) teret felosztja kisebb, téglalap alakú részekre. Ezeket a részeket voxelek-nek nevezzük.
+\href{https://www.researchgate.net/publication/314816140_A_voxel-based_parallel_collision_detection_algorithm}{A voxel-alapú módszer} \cite{voxel} egy hatékony módszer, amely a (háromdimenziós) teret felosztja kisebb, téglalap alakú részekre. Ezeket a részeket voxelek-nek nevezzük.
 Ezekkel a voxelekkel közelítjük a modelleket.
 \\
 Lépései:
@@ -65,4 +65,14 @@ Lépései:
 
 \item Gyakran szükség van az egyenletek alkalmazására numerikus módszerekre, például differenciálegyenletek megoldása esetén.
 \end{itemize}
-Előnye a módszernek, hogy pontos fizikai szimulációkat érzékelhetünk. Hátránya, hogy sok esetben magas a számítási igénye, ezért nem alkalmas valós idejű szimulációkra, illetve magas modellszám esetén sem előnyös.
+Előnye a módszernek, hogy pontos fizikai szimulációkat érzékelhetünk. Hátránya, hogy sok esetben magas a számítási igénye, ezért nem alkalmas valós idejű szimulációkra, illetve magas modellszám esetén sem előnyös. Erre megfelelő példa lehet két kör ütközésének vizsgálata, melynek lépései:
+
+\begin{itemize}
+	\item Kiszámítjuk a két kör középpontjainak távolságát egymástól.
+	$$tavolsagX = kor1x - kor2x $$
+	$$tavolsagY = kor1y - kor2y$$
+	$$kulonbseg = sqrt( ( tavolsagX * tavolsagX ) + ( tavolsagY * tavolsagY ) )$$
+	ahol az 'sqrt' négyzetgyökvonást jelent.
+	\item  Ha a távolság nagyobb, mint a két kör átmérőinek összege, akkor biztosra tudjuk, hogy nem ütköznek egymással, azaz
+	$$kulonbseg > ( kor1atmero + kor2atmero )$$
+\end{itemize}

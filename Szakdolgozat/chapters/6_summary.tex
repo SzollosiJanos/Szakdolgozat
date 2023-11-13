@@ -1,0 +1,11 @@
+\Chapter{Összefoglalás}
+
+A szakdolgozat eredménye egy könnyen használható függvénykönyvtár, amely lehetővé teszi 3 dimenziós modellek beimportálását, valamint "hitbox"\textsuperscript{\ref{def:hitbox}}-ként kezelését, ütközések vizsgálatát más modellekkel. A program fejlesztése során kiemelt figyelmet kapott, hogy az alkalmazást könnyen használhassák más fejlesztők, akik esetleg nem jártasak, vagy csak kevés tapasztalattal rendelkeznek ütközések vizsgálatában.
+
+A beépített funkciók azonnal elérhetővé válnak, amint beimportáljuk a függvénykönyvtárat a fejlesztői környezetbe. Fontos megemlítenünk, hogy a függvénykönyvtár használatához a fejlesztőnek szüksége van egy C fordítóra, illetve rendelkeznie kell OpenGL \cite{OpenGL} és SDL2 \cite{SDL2} függvénykönyvtárakkal is. A fejlesztő döntheti el, hogy mikor és milyen modellekre alkalmazza a vizsgálatot, illetve milyen eseményekkel jár az ütközés, ezzel személyre szabható a program minden része.
+
+Az ütközésvizsgálat egyszerűen elvégezhető a \textbf{check\_collision} függvény meghívásával, illetve a szükséges adatok megadásával. A függvény eredményeként visszatér egy igaz, vagy hamis értékkel, ezzel jelezve, hogy a modellek ütköztek-e egymással, vagy sem.
+
+A jövőben számos további fejlesztés valósulhat meg a program szempontjából, ilyen lehet például az optimalizálás, amellyel a teljesítményt növelhetjük, míg az erőforrások nagyságát csökkenthetjük, valamint még könnyebbé, felhasználóbarátabbá tehetjük a program használatát.
+
+A függvénykönyvtár széles körben alkalmazható fizikai szimulációk, videójátékok esetében, ezzel hozzájárulva a fejlesztők munkájához, illetve a számítógépes grafikában rejlő lehetőségek kiaknázásához.

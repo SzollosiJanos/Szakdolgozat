@@ -5,7 +5,7 @@ Minél több a "playermodel"\textsuperscript{\ref{def:playermodel}} háromszöge
 \Section{Szűrés távolság alapján}
 Minden modell betöltésekkor kiszámítjuk a modell középpontjától számított legtávolabbi pontjának hosszát, ahogy a \ref{fig:opt_1} ábrán láthatjuk. Ezt csak egyszer kell kiszámítanunk, kivéve ha futtatás közben szeretnénk módosítani a modellt, például a modell méretének megváltoztatásával. Ütközésvizsgálat előtt kiszámítjuk, hogy a két modell ütközhet-e egymással vagy sem. Ez lényegében a négyzetes elválasztás(\ref{chap:quad}) módszere alapján működik.
 \\
-Részlet a \texttt{check\_collision} függvényből:
+Részlet a \textbf{check\_collision} függvényből:
 \begin{cpp}
 float limit, distance;
 limit = model1->farestpoint + model2->farestpoint + 0.5;
@@ -61,3 +61,26 @@ Az optimalizálás ezen esetben megoldható, a számítások ideje csökken, de 
 	\caption{Tengelyek alapján szűrés}
 	\label{fig:opt_3}
 \end{figure}
+\newpage
+\Section{Számítási idő}
+A függvénykönyvtár, illetve a demo program futási idejét 2 különböző módon tesztelhetjük. Első esetben csak a háromszögek metszéspontjának számítása lett figyelembe véve, míg a második esetben az OpenGL \cite{OpenGL} renderelési ideje is.
+A számítások intel core i9-13900 processzoron, illetve RTX 4070 videókártyán lettek elvégezve. Az eredmények más rendszereken mások lehetnek. Modellek ütközésének vizsgálatakor mindig 1 kockát (12 háromszög) és több hengert (124 háromszög * modellek száma) vettünk figyelembe.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=15truecm, height=9truecm]{images/háromszögek_száma.png}
+	\caption{Háromszögek metszéspontjának számítása}
+	\label{fig:szam_1}
+\end{figure}
+
+Háromszögek metszéspontjainak számítási idejét láthatjuk a \ref{fig:szam_1} ábrán, ahogy a számítási idő lineárisan nő a háromszögek száma alapján.
+
+\newpage
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=15truecm, height=9truecm]{images/modellek_számítása.png}
+	\caption{Modellek ütközésvizsgálatának számítása}
+	\label{fig:szam_2}
+\end{figure}
+
+Modellek ütközésvizsgálatánál már nem mondhatjuk el, hogy teljesen lineáris lenne a számítási igény. Az elején a \ref{fig:szam_2} ábrán (kb. 100 modellig) hirtelen nő a számítási idő, majd egyre inkább egyenletes lesz, lineárisan nő a szükséges idő.
